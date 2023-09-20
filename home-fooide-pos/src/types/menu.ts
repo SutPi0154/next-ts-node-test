@@ -8,3 +8,9 @@ export interface Menu extends CreateMenuType {
   id: number;
   isArchived: boolean;
 }
+
+export interface MenuSlide {
+  items: Menu[];
+  isLoading: boolean;
+  error: Error | null;
+}
