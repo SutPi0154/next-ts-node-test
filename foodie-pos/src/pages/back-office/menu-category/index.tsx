@@ -5,10 +5,9 @@ import { useAppSelector } from "@/store/hook";
 import CategoryIcon from "@mui/icons-material/Category";
 import { Box, Button } from "@mui/material";
 import { useState } from "react";
-
 const MenuCategoryPage = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const menuCategories = useAppSelector((state) => state.menuCategory.items);
+  const menuCategories = useAppSelector((store) => store.menuCategories.items);
   return (
     <BackOfficeLayout>
       <Box sx={{ display: "flex", justifyContent: "flex-end" }}>

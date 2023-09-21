@@ -1,13 +1,27 @@
-import { MenuCategoryState } from "@/types/menuCategory";
-import { createSlice } from "@reduxjs/toolkit";
+import config from "@/config";
+import { CreateMenuCategory, MenuCategoryState } from "@/types/menuCategory";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState: MenuCategoryState = {
   items: [],
   isLoading: false,
   error: null,
 };
+
+export const createMenuCategory = createAsyncThunk(
+  "menuCategory/createMenuCategory",
+  async (payload: CreateMenuCategory, thunkApi) => {
+    const api = await fetch(`${config.apiBaseUrl}/menu-category`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const menuCategories = await api.json();
+    thunkApi.dispatch(setMenuCategory(menuCategories));
+  }
+);
 export const menuCategorySlice = createSlice({
-  name: "menuCategory",
+  name: "menuCategorySlice",
   initialState,
   reducers: {
     setMenuCategory: (state, action) => {
@@ -17,5 +31,4 @@ export const menuCategorySlice = createSlice({
 });
 
 export const { setMenuCategory } = menuCategorySlice.actions;
-
 export default menuCategorySlice.reducer;

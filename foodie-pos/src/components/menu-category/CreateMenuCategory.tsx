@@ -1,6 +1,5 @@
-import config from "@/config";
 import { useAppDispatch } from "@/store/hook";
-import { setMenuCategory } from "@/store/slices/menuCategory";
+import { createMenuCategory } from "@/store/slices/menuCategory";
 import {
   Box,
   Button,
@@ -23,17 +22,10 @@ const defaultMenuCategory = {
 
 const CreateMenuCategory = ({ open, setOpen }: Props) => {
   const [newMenuCategory, setNewMenuCategory] = useState(defaultMenuCategory);
-  console.log(newMenuCategory);
+
   const dispatch = useAppDispatch();
-  const CreateNewMenuCategory = async () => {
-    const api = await fetch(`${config.apiBaseUrl}/menu-category`, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(newMenuCategory),
-    });
-    const data = await api.json();
-    console.log(data);
-    dispatch(setMenuCategory(data));
+  const CreateNewMenuCategory = () => {
+    dispatch(createMenuCategory(newMenuCategory));
     setNewMenuCategory(defaultMenuCategory);
     setOpen(false);
   };

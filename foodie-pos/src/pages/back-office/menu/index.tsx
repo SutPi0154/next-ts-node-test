@@ -4,13 +4,10 @@ import MenuCard from "@/components/menu/MenuCard";
 import { useAppSelector } from "@/store/hook";
 import { Box, Button } from "@mui/material";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
 const MenuPage = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const menus = useAppSelector((store) => store.menu.items);
-  console.log(menus);
-  const dispatch = useDispatch();
+  const menus = useAppSelector((store) => store.menus.items);
   return (
     <BackOfficeLayout>
       <Box sx={{ display: "flex", justifyContent: "flex-end" }}>

@@ -1,6 +1,5 @@
-import config from "@/config";
 import { useAppDispatch } from "@/store/hook";
-import { setMenu } from "@/store/slices/menuSlice";
+import { createMenu } from "@/store/slices/menuSlice";
 import { CreateMenuType } from "@/types/menu";
 import { Box, Button, Dialog, DialogTitle, TextField } from "@mui/material";
 import { useState } from "react";
@@ -17,15 +16,8 @@ const DefaultNewMenu: CreateMenuType = {
 const CreateMenu = ({ open, setOpen }: Props) => {
   const [newMenu, setNewMenu] = useState(DefaultNewMenu);
   const dispatch = useAppDispatch();
-  const CreateNewMenu = async () => {
-    const api = await fetch(`${config.apiBaseUrl}/menu`, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(newMenu),
-    });
-    const menus = await api.json();
-    console.log(menus);
-    dispatch(setMenu(menus));
+  const CreateNewMenu = () => {
+    dispatch(createMenu(newMenu));
     setOpen(false);
     setNewMenu(DefaultNewMenu);
   };
