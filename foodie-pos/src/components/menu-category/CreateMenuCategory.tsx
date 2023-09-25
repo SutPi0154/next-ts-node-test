@@ -29,6 +29,7 @@ const CreateMenuCategory = ({ open, setOpen }: Props) => {
     setNewMenuCategory(defaultMenuCategory);
     setOpen(false);
   };
+  console.log(newMenuCategory);
   return (
     <Dialog
       open={open}

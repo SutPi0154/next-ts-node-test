@@ -1,5 +1,5 @@
 import config from "@/config";
-import { CreateMenuType, MenuState } from "@/types/menu";
+import { CreateMenuType, MenuState, UpdateMenuPayload } from "@/types/menu";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState: MenuState = {
@@ -18,6 +18,19 @@ export const createMenu = createAsyncThunk(
     });
     const menus = await api.json();
     thunkApi.dispatch(setMenus(menus));
+  }
+);
+export const UpdateMenuThunk = createAsyncThunk(
+  "menu/updateMenu",
+  async (payload: UpdateMenuPayload, thunkApi) => {
+    console.log(payload);
+    // const api = await fetch(`${config.apiBaseUrl}/menu`, {
+    //   method: "PUT",
+    //   headers: { "content-type": "application/json" },
+    //   body: JSON.stringify(payload),
+    // });
+    // const menus = await api.json();
+    // thunkApi.dispatch(setMenus(menus));
   }
 );
 export const menuSlice = createSlice({

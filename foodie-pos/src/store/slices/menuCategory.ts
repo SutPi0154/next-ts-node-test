@@ -1,5 +1,9 @@
 import config from "@/config";
-import { CreateMenuCategory, MenuCategoryState } from "@/types/menuCategory";
+import {
+  CreateMenuCategory,
+  MenuCategoryPayload,
+  MenuCategoryState,
+} from "@/types/menuCategory";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState: MenuCategoryState = {
@@ -18,6 +22,19 @@ export const createMenuCategory = createAsyncThunk(
     });
     const menuCategories = await api.json();
     thunkApi.dispatch(setMenuCategory(menuCategories));
+  }
+);
+export const UpdateMenuCategory = createAsyncThunk(
+  "updateMenuCategory/createMenuCategory",
+  async (payload: MenuCategoryPayload, thunkApi) => {
+    console.log(payload);
+    // const api = await fetch(`${config.apiBaseUrl}/menu-category`, {
+    //   method: "POST",
+    //   headers: { "content-type": "application/json" },
+    //   body: JSON.stringify(payload),
+    // });
+    // const menuCategories = await api.json();
+    // thunkApi.dispatch(setMenuCategory(menuCategories));
   }
 );
 export const menuCategorySlice = createSlice({

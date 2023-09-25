@@ -7,6 +7,10 @@ export interface MenuCategory extends CreateMenuCategory {
   id: number;
   isArchived: false;
 }
+export interface MenuCategoryPayload {
+  name: string;
+  id: number;
+}
 
 export interface MenuCategoryState {
   items: MenuCategory[];
